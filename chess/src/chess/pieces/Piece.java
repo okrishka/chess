@@ -1,6 +1,5 @@
 package chess.pieces;
 
-import chess.Board;
 import chess.BoardSpot;
 
 public abstract class Piece {
@@ -29,17 +28,7 @@ public abstract class Piece {
 		setChessEnumType(type);
 	}
 
-	public void markAttackedSpots(Board board) {
 
-		for (int i = 0; i < board.getAttackedSportsArr().length; i++) {
-			for (int j = 0; j < board.getAttackedSportsArr().length; j++) {
-				if (board.getAttackedSportsArr()[i][j])
-					continue;
-				board.getAttackedSportsArr()[i][j] = isAttackedSpot(this.getBoardPosition().getX(),
-						this.getBoardPosition().getY(), i, j);
-			}
-		}
-	}
 
 	public abstract boolean isAttackedSpot(int fromX, int fromY, int toX, int toY);
 

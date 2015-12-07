@@ -66,7 +66,7 @@ public class Board {
 
 	public void markAttackedSpots() {
 		for (Piece piece : piecesMap.values()) {
-			piece.markAttackedSpots(this);
+			markAttackedSpots(piece);
 		}
 		updateUnattackedSpotsSet();
 	}
@@ -81,6 +81,18 @@ public class Board {
 		}
 	}
 
+	public void markAttackedSpots(Piece piece) {
+
+		for (int i = 0; i < this.getAttackedSportsArr().length; i++) {
+			for (int j = 0; j < this.getAttackedSportsArr().length; j++) {
+				if (this.getAttackedSportsArr()[i][j])
+					continue;
+				this.getAttackedSportsArr()[i][j] = piece.isAttackedSpot(piece.getBoardPosition().getX(),
+						piece.getBoardPosition().getY(), i, j);
+			}
+		}
+	}
+	
 	public void printBoard() {
 		for (int i = nHorizDim - 1; i > -1; i--) {
 			for (int j = 0; j < nVertDim; j++) {
