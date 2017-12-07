@@ -1,6 +1,6 @@
-package chess.pieces;
+package okri.chess.pieces;
 
-import chess.BoardSpot;
+import okri.chess.BoardSpot;
 
 public abstract class Piece {
 
@@ -34,7 +34,7 @@ public abstract class Piece {
 
 	@Override
 	public String toString() {
-		return ChessEnumType.getsVal();
+		return ChessEnumType.getVal();
 	}
 
 }

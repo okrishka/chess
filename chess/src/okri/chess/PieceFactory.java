@@ -1,17 +1,17 @@
-package chess;
+package okri.chess;
 
 import java.util.Set;
 
-import chess.pieces.Bishop;
-import chess.pieces.King;
-import chess.pieces.Knight;
-import chess.pieces.Pawn;
-import chess.pieces.Piece;
-import chess.pieces.Queen;
-import chess.pieces.Rook;
+import okri.chess.pieces.Bishop;
+import okri.chess.pieces.King;
+import okri.chess.pieces.Knight;
+import okri.chess.pieces.Pawn;
+import okri.chess.pieces.Piece;
+import okri.chess.pieces.Queen;
+import okri.chess.pieces.Rook;
 
 public class PieceFactory {
-	static Piece createPiece(String sPiece, int nHorizCoordinate, int nVertCoordinate) {
+	public static Piece createPiece(String sPiece, int nHorizCoordinate, int nVertCoordinate) {
 		if (sPiece.equals("P")) {
 			// create pawn
 			return new Pawn(nHorizCoordinate, nVertCoordinate);
@@ -45,15 +45,15 @@ public class PieceFactory {
 	}
 
 	public static Piece createPiece(String sPiece, Board board) {
-		for (BoardSpot unchargedBoardSpot : board.getUnattackedSpotsSet()) {
-			Piece potentialPiece = createPiece(sPiece, unchargedBoardSpot.getX(), unchargedBoardSpot.getY());
-			if (!isPotentialPiceAttackingExistingPieces(board.getPiecesMap().keySet(), potentialPiece))
+		for (BoardSpot unattackedBoardSpot : board.getUnattackedSpotSet()) {
+			Piece potentialPiece = createPiece(sPiece, unattackedBoardSpot.getX(), unattackedBoardSpot.getY());
+			if (!isPotentialPieceAttackingExistingPieces(board.getPiecesMap().keySet(), potentialPiece))
 				return potentialPiece;
 		}
 		return null;
 	}
 	
-	public static boolean isPotentialPiceAttackingExistingPieces(Set<BoardSpot> takenSpots, Piece potentialPiece){
+	public static boolean isPotentialPieceAttackingExistingPieces(Set<BoardSpot> takenSpots, Piece potentialPiece){
 		boolean bPotentialPieceAttacksExistingPiece = false;
 		for (BoardSpot takenSpot : takenSpots) {
 			bPotentialPieceAttacksExistingPiece = potentialPiece.isAttackedSpot(

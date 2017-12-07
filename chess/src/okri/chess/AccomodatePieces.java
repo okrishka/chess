@@ -1,4 +1,4 @@
-package chess;
+package okri.chess;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,12 +9,12 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
-import chess.pieces.ChessPiece;
-import chess.pieces.Piece;
+import okri.chess.pieces.ChessPiece;
+import okri.chess.pieces.Piece;
 
 public class AccomodatePieces {
 	public static Board accomodatePieces(Board oldBoard, String sPiece) throws InterruptedException {
-		Board newBoard = new Board(oldBoard.getnHorizDim(), oldBoard.getnVertDim());
+		Board newBoard = new Board(oldBoard.getHorizDim(), oldBoard.getVertDim());
 		
 		System.out.println("Trying to accomodate this piece");
 
@@ -24,7 +24,7 @@ public class AccomodatePieces {
 		Collections.sort(piecesList, new Comparator<ChessPiece>() {
 			@Override
 			public int compare(ChessPiece one, ChessPiece two) {
-				return two.getnFootprintValue() - one.getnFootprintValue();
+				return two.getFootprintValue() - one.getFootprintValue();
 			}
 		});
 
@@ -32,7 +32,7 @@ public class AccomodatePieces {
 			BoardSpot spot = findFirstSpotWithLeastFootprint(piece, newBoard);
 			if (spot == null)
 				return null;
-			Piece newPiece = PieceFactory.createPiece(piece.getsVal(), spot.getX(), spot.getY());
+			Piece newPiece = PieceFactory.createPiece(piece.getVal(), spot.getX(), spot.getY());
 			newBoard.getPiecesMap().put(newPiece.getBoardPosition(), newPiece);
 			newBoard.markAttackedSpots();
 			newBoard.printBoard();
@@ -45,12 +45,12 @@ public class AccomodatePieces {
 
 	private static BoardSpot findFirstSpotWithLeastFootprint(ChessPiece piece, Board board) {
 		TreeMap<Integer, BoardSpot> footprintsMap = new TreeMap<Integer, BoardSpot>();
-		for (BoardSpot potentialSpot : board.getUnattackedSpotsSet()) {
-			Piece potentialPiece = PieceFactory.createPiece(piece.getsVal(), potentialSpot.getX(),
+		for (BoardSpot potentialSpot : board.getUnattackedSpotSet()) {
+			Piece potentialPiece = PieceFactory.createPiece(piece.getVal(), potentialSpot.getX(),
 					potentialSpot.getY());
 			if (PieceFactory.isPotentialPiceAttackingExistingPieces(board.getPiecesMap().keySet(), potentialPiece))
 				continue;
-			int nCount = countFootprintOnUnattackedSpots(board.getUnattackedSpotsSet(), potentialPiece);
+			int nCount = countFootprintOnUnattackedSpots(board.getUnattackedSpotSet(), potentialPiece);
 			if (!footprintsMap.containsKey(nCount)){
 				
 				footprintsMap.put(nCount, potentialSpot);

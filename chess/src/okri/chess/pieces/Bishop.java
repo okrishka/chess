@@ -1,4 +1,4 @@
-package chess.pieces;
+package okri.chess.pieces;
 
 public class Bishop extends Piece {
 

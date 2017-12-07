@@ -1,4 +1,4 @@
-package chess.pieces;
+package okri.chess.pieces;
 
 public enum ChessPiece {
 	PAWN("P"), KNIGHT("N"), KING("K"), BISHOP("B"), ROOK("R"), QUEEN("Q");
@@ -9,34 +9,34 @@ public enum ChessPiece {
 	ChessPiece(String s) {
 		sVal = s;
 		if (s.equals("P"))
-			setnFootprintValue(1);
+			setFootprintValue(1);
 		if (s.equals("N"))
-			setnFootprintValue(2);
+			setFootprintValue(2);
 		if (s.equals("K"))
-			setnFootprintValue(3);
+			setFootprintValue(3);
 		if (s.equals("B"))
-			setnFootprintValue(4);
+			setFootprintValue(4);
 		if (s.equals("R"))
-			setnFootprintValue(5);
+			setFootprintValue(5);
 		if (s.equals("Q"))
-			setnFootprintValue(6);
+			setFootprintValue(6);
 	}
 
-	public String getsVal() {
+	public String getVal() {
 		return sVal;
 	}
 
-	public int getnFootprintValue() {
+	public int getFootprintValue() {
 		return nFootprintValue;
 	}
 
-	public void setnFootprintValue(int nFootprintValue) {
+	private void setFootprintValue(int nFootprintValue) {
 		this.nFootprintValue = nFootprintValue;
 	}
 
 	public static ChessPiece getByValue(String sVal) {
 		for (ChessPiece chp : values()) {
-			if (chp.getsVal().equals(sVal)) {
+			if (chp.getVal().equals(sVal)) {
 				return chp;
 			}
 		}

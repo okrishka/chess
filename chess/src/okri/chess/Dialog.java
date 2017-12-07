@@ -1,12 +1,13 @@
-package chess;
+package okri.chess;
 
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.EnumSet;
 
-import chess.pieces.ChessPiece;
-import chess.pieces.Piece;
+import okri.chess.pieces.ChessPiece;
+import okri.chess.pieces.Piece;
+
+import java.util.EnumSet;
 
 public class Dialog {
 
@@ -14,13 +15,13 @@ public class Dialog {
 		int nHorizCoordinate = 0;
 		int nVertCoordinate = 0;
 		do {
-			System.out.println("Enter horizontal coordinate (0 - " + (board.getnHorizDim() - 1) + "):");
+			System.out.println("Enter horizontal coordinate (0 - " + (board.getHorizDim() - 1) + "):");
 			nHorizCoordinate = reader.nextInt();
-		} while (nHorizCoordinate < 0 || nHorizCoordinate > (board.getnHorizDim() - 1));
+		} while (nHorizCoordinate < 0 || nHorizCoordinate > (board.getHorizDim() - 1));
 		do {
-			System.out.println("Enter vertical coordinate (0 - " + (board.getnVertDim() - 1) + "):");
+			System.out.println("Enter vertical coordinate (0 - " + (board.getVertDim() - 1) + "):");
 			nVertCoordinate = reader.nextInt();
-		} while (nVertCoordinate < 0 || nVertCoordinate > (board.getnVertDim() - 1));
+		} while (nVertCoordinate < 0 || nVertCoordinate > (board.getVertDim() - 1));
 		return new BoardSpot(nHorizCoordinate, nVertCoordinate);
 
 	}
@@ -49,7 +50,7 @@ public class Dialog {
 		int nPieces = 0;
 		BoardSpot firstPiecePosition = null;
 		for (ChessPiece chp : chessPiecesEnumSet) {
-			allowedPieceEntrySet.add(chp.getsVal());
+			allowedPieceEntrySet.add(chp.getVal());
 		}
 		try {
 			for (;; nPieces++) {

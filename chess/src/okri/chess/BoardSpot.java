@@ -1,4 +1,4 @@
-package chess;
+package okri.chess;
 
 public class BoardSpot implements Comparable<BoardSpot> {
 	@Override
